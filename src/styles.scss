@@ -1,1 +1,83 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Roboto', sans-serif; }
+
+:root {
+  --margin-top: 0.75rem;
+  --margin-in-between: 0.25rem;
+  --container-padding: 1 rem;
+  --primary-color: #57499B;
+  --secondary-color: rgba(9, 30, 66, 0.04);
+}
+
+.body {
+  width: 100%;
+  height: 100vh;
+  background: var(--secondary-color);
+}
+
+mat-form-field{
+  font-size: 10px;
+  min-width: 200px;
+  width: 100%;
+}
+
+label{
+  margin-bottom: 15px;
+  width: 20%;
+  margin-right: 4px;
+}
+
+.form-controller{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 48%;
+  &--three-row {
+    width: 30%;
+  }
+}
+
+.form-controller-wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-section {
+  background: white;
+  padding: 8px;
+  margin: 16px;
+  font-size: 12px;
+}
+
+.form-buttons {
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0px 8px;
+}
+
+.grid-section{
+  background: white;
+  padding: 8px;
+  margin: 16px;
+  font-size: 12px;
+}
+
+@media (max-width: 800px) {
+  .form-controller-wrapper {
+    flex-direction: column;
+  }
+  .form-controller{
+    width: 100%;
+  }
+}
+
+.button-normal {
+  font-size: 12px
+}
+

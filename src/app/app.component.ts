@@ -1,10 +1,30 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {map, shareReplay} from 'rxjs/operators';
+import {Observable} from 'rxjs';
+import {BreakpointObserver} from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'ama-food-products';
+export class AppComponent implements OnInit {
+
+  selectedComponent = 0;
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+  ) {
+  }
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(['(max-width: 1000px)'])
+    .pipe(
+      map(result => result.matches),
+      shareReplay()
+    );
+
+  ngOnInit(): void {
+  }
+
+  onSelect(num: number) {
+    this.selectedComponent = num;
+  }
 }
