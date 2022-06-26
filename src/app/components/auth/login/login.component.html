@@ -1,0 +1,20 @@
+<form [formGroup]="loginForm" class="main-container">
+  <div class="form-controller">
+    <label>Email:</label>
+    <mat-form-field appearance="outline">
+      <input matInput placeholder="Email" formControlName="email">
+      <mat-error *ngIf="loginForm.get('email').invalid">This field is required!</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-controller">
+    <label>Password:</label>
+    <mat-form-field appearance="outline">
+      <input matInput placeholder="Password" formControlName="password">
+      <mat-error *ngIf="loginForm.get('password').invalid">This field is required!</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="button-container">
+    <button mat-raised-button color="primary" (click)="onLogin()">Login</button>
+    <button mat-raised-button color="warn">Clear</button>
+  </div>
+</form>

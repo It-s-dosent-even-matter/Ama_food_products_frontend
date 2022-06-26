@@ -1,0 +1,44 @@
+<mat-sidenav-container class="sidenav-container" autosize>
+  <!--side nav-->
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               [mode]="(isHandset$ | async) ? 'over' : 'side'"
+               [opened]="(isHandset$ | async) === false">
+    <div class="image-wrapper">
+      <img height="120px" width="200px" src="src/assets/images/logo.png" style="margin: auto">
+    </div>
+    <mat-nav-list>
+      <mat-list-item [ngClass]="selectedComponent === 0 ? 'list-item list-item--selected' : 'list-item'" (click)="onSelect(0)">
+        <mat-icon aria-label="Side nav toggle icon">width_wide</mat-icon>
+        <p class="list-item-text">Manager</p>
+      </mat-list-item>
+      <mat-list-item [ngClass]="selectedComponent == 1 ? 'list-item list-item--selected' : 'list-item'" (click)="onSelect(1)">
+        <mat-icon aria-label="Side nav toggle icon">width_wide</mat-icon>
+        <p class="list-item-text">Customer</p>
+      </mat-list-item>
+      <mat-list-item [ngClass]="selectedComponent == 2 ? 'list-item list-item--selected' : 'list-item'" (click)="onSelect(2)">
+        <mat-icon aria-label="Side nav toggle icon">width_wide</mat-icon>
+        <p class="list-item-text">Purchases</p>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content class="sidenav-container">
+    <!--toolbar-->
+    <mat-toolbar class="toolbar" fxLayout="row" fxLayoutAlign="end center" fxHide.lt-sm fxShow="true">
+      <button mat-flat-button color="warn">Sign Out</button>
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+
+    </mat-toolbar>
+    <!--router outlet comes here-->
+    <app-manager *ngIf="selectedComponent == 0"></app-manager>
+    <app-customer *ngIf="selectedComponent == 1"></app-customer>
+    <app-purchases *ngIf="selectedComponent == 2"></app-purchases>
+  </mat-sidenav-content>
+</mat-sidenav-container>
