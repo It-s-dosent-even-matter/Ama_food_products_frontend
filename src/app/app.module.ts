@@ -32,13 +32,19 @@ import {MatDatepickerModule, MatExpansionModule, MatSelectModule} from '@angular
 import { ManagerComponent } from './components/manager/manager.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { PurchasesComponent } from './components/purchases/purchases.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { SignUpComponent } from './components/auth/sign-up/sign-up.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ManagerComponent,
     CustomerComponent,
-    PurchasesComponent
+    PurchasesComponent,
+    LoginComponent,
+    SignUpComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
