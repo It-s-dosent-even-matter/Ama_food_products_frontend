@@ -36,6 +36,7 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { SignUpComponent } from './components/auth/sign-up/sign-up.component';
 import { HomeComponent } from './components/home/home.component';
 import { RouterModule } from '@angular/router';
+import { ConfirmationComponent } from './components/shared/dialogues/confirmation/confirmation.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { RouterModule } from '@angular/router';
     PurchasesComponent,
     LoginComponent,
     SignUpComponent,
-    HomeComponent
+    HomeComponent,
+    ConfirmationComponent
   ],
   imports: [
     BrowserModule,
@@ -79,6 +81,7 @@ import { RouterModule } from '@angular/router';
     AppRoutingModule
   ],
   providers: [],
+  entryComponents: [ConfirmationComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

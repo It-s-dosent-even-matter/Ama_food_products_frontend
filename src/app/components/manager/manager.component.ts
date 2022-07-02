@@ -6,6 +6,8 @@ import {MatSort} from '@angular/material/sort';
 import {MatTable, MatTableDataSource} from '@angular/material/table';
 import {AfterViewInit, ViewChild} from '@angular/core';
 import {Manager} from '../../models/manager.model';
+import {MatDialog, MatDialogConfig} from '@angular/material';
+import {ConfirmationComponent} from '../shared/dialogues/confirmation/confirmation.component';
 
 @Component({
   selector: 'app-manager',
@@ -15,12 +17,13 @@ import {Manager} from '../../models/manager.model';
 export class ManagerComponent implements OnInit, AfterViewInit {
 
   @ViewChild('table', { read: MatTable }) table;
-  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'nic', 'mobileNo'];
+  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'nic', 'mobileNo', 'actions'];
   dataSource: MatTableDataSource<Manager>;
   managers: Manager[] = [];
 
   constructor(
     private fb: FormBuilder,
+    private dialog: MatDialog
     ) {
   }
 
@@ -62,7 +65,6 @@ export class ManagerComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit(fg: FormGroup) {
-    console.log(fg);
     const manager = new Manager();
     manager.firstName = fg.controls.firstName.value;
     manager.lastName = fg.controls.lastName.value;
@@ -72,5 +74,35 @@ export class ManagerComponent implements OnInit, AfterViewInit {
     this.managers.push(manager);
     this.dataSource = new MatTableDataSource(this.managers);
     this.table.renderRows();
+  }
+
+  onDelete() {
+    const dialogRef = this.dialog.open(ConfirmationComponent, {
+      data: {
+        title: 'Delete Confirmation',
+        message: 'Do you Really want to delete?',
+        type: 0,
+      },
+      width: '500px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
+  }
+
+  onUpdate() {
+    const dialogRef = this.dialog.open(ConfirmationComponent, {
+      data: {
+        title: 'Update Confirmation',
+        message: 'Do you Really want to update?',
+        type: 1,
+      },
+      width: '500px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
   }
 }
